@@ -168,13 +168,13 @@ class TestStringParser(TestCase):
         self.str_expr = f'{random.random()} + {random.random()} - {random.random()} * {random.random()} / {random.random()} + {random.random()}' \
                         f'+ sin({random.random()}) - cos({random.random()}) * asin({random.random()}) / acos({random.random()})' \
                         f'+ - exp({random.random()}) + tan({random.random()}) - atan({random.random()}) * sqrt({random.random()}) / ({random.random()})' \
-                        f'+ - sin({random.random()})' \
+                        f'+ + sin({random.random()})' \
                         f'+ - cos({random.random()})' \
-                        f'+ - asin({random.random()})' \
+                        f'+ + asin({random.random()})' \
                         f'+ - acos({random.random()})' \
-                        f'+ - tan({random.random()})' \
+                        f'+ + tan({random.random()})' \
                         f'+ - atan({random.random()})' \
-                        f'+ - sqrt({random.random()})'
+                        f'+ + sqrt({random.random()})'
         expr = self.parser.parse_to_expression(self.str_expr)
         self.assertLessEqual(eval(self.str_expr)-expr.eval(), 0.000000000001)
 
