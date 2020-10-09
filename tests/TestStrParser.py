@@ -14,7 +14,6 @@ class TestStringParser(TestCase):
         self.str_expr = f'{random.random()}'
         expr = self.parser.parse_to_expression(self.str_expr)
         self.assertLessEqual(eval(self.str_expr)-expr.eval(), 0.000000000001)
-        # self.assertEqual(self.str_expr, expr.print())
 
     def test_one_var(self):
         self.str_expr = 'x'
@@ -23,6 +22,146 @@ class TestStringParser(TestCase):
         expr = self.parser.parse_to_expression(self.str_expr)
         expr.bind(self.context)
         self.assertEqual(x, expr.eval())
+
+    def test_sin_var(self):
+        self.str_expr = 'sin(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.sin(x), expr.eval())
+
+    def test_cos_var(self):
+        self.str_expr = 'cos(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.cos(x), expr.eval())
+
+    def test_asin_var(self):
+        self.str_expr = 'asin(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.asin(x), expr.eval())
+
+    def test_acos_var(self):
+        self.str_expr = 'acos(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.acos(x), expr.eval())
+
+    def test_tan_var(self):
+        self.str_expr = 'tan(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.tan(x), expr.eval())
+
+    def test_atan_var(self):
+        self.str_expr = 'atan(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.atan(x), expr.eval())
+
+    def test_exp_var(self):
+        self.str_expr = 'exp(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.exp(x), expr.eval())
+
+    def test_sqrt_var(self):
+        self.str_expr = 'sqrt(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.sqrt(x), expr.eval())
+
+    def test_ln_var(self):
+        self.str_expr = 'ln(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.log1p(x), expr.eval())
+
+    def test_lg_var(self):
+        self.str_expr = 'lg(x)'
+        x = random.random()
+        self.context.reg_var('x', x)
+        expr = self.parser.parse_to_expression(self.str_expr)
+        expr.bind(self.context)
+        self.assertEqual(math.log10(x), expr.eval())
+
+    def test_sin_value(self):
+        x = random.random()
+        self.str_expr = f'sin({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.sin(x), expr.eval())
+
+    def test_cos_value(self):
+        x = random.random()
+        self.str_expr = f'cos({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.cos(x), expr.eval())
+
+    def test_asin_value(self):
+        x = random.random()
+        self.str_expr = f'asin({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.asin(x), expr.eval())
+
+    def test_acos_value(self):
+        x = random.random()
+        self.str_expr = f'acos({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.acos(x), expr.eval())
+
+    def test_tan_value(self):
+        x = random.random()
+        self.str_expr = f'tan({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.tan(x), expr.eval())
+
+    def test_atan_value(self):
+        x = random.random()
+        self.str_expr = f'atan({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.atan(x), expr.eval())
+
+    def test_exp_value(self):
+        x = random.random()
+        self.str_expr = f'exp({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.exp(x), expr.eval())
+
+    def test_sqrt_value(self):
+        x = random.random()
+        self.str_expr = f'sqrt({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.sqrt(x), expr.eval())
+
+    def test_ln_value(self):
+        x = random.random()
+        self.str_expr = f'ln({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.log1p(x), expr.eval())
+
+    def test_lg_value(self):
+        x = random.random()
+        self.str_expr = f'lg({x})'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertEqual(math.log10(x), expr.eval())
 
     def test_all_operation_values(self):
         from math import sin, cos, tan, asin, acos, atan, sqrt, exp
@@ -47,7 +186,6 @@ class TestStringParser(TestCase):
 
     def test_uneg_sub_operations_values(self):
         self.str_expr = f'-{random.random()} - -{random.random()}'
-        # print(self.str_expr)
         expr = self.parser.parse_to_expression(self.str_expr)
         self.assertLessEqual(eval(self.str_expr)-expr.eval(), 0.000000000001)
 
@@ -71,18 +209,29 @@ class TestStringParser(TestCase):
         self.assertLessEqual(z1.real - z2.real, 0.000000000001)
         self.assertLessEqual(z1.imag - z2.imag, 0.000000000001)
 
-
-    def test_ln_values(self):
+    def test_e_const(self):
         import math
-        x = random.random()+5
-        self.str_expr = f'ln(x) + x'
+        self.str_expr = 'e'
         expr = self.parser.parse_to_expression(self.str_expr)
-        self.context.reg_var('x', x)
-        expr.bind(self.context)
-        self.assertEqual(math.log1p(x) + x, expr.eval())
+        self.assertEqual(math.e, expr.eval())
 
-    def test_e_values(self):
+    def test_pi_const(self):
         import math
-        self.str_expr = 'e + 1'
+        self.str_expr = 'pi'
         expr = self.parser.parse_to_expression(self.str_expr)
-        self.assertEqual(math.e + 1, expr.eval())
+        self.assertEqual(math.pi, expr.eval())
+
+    def test_order_claculate_expr(self):
+        self.str_expr = f'{random.random()} / {random.random()} + {random.random()} * {random.random()}'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertLessEqual(eval(self.str_expr) - expr.eval(), 0.000000000001)
+
+    def test_order_pow_claculate_expr(self):
+        self.str_expr = f'{random.random()} * {random.random()} ^ {random.random()} * {random.random()}'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertLessEqual(eval(self.str_expr.replace('^', '**')) - expr.eval(), 0.000000000001)
+
+    def test_order_pow_claculate_expr_1(self):
+        self.str_expr = f'{random.random()} + {random.random()} ^ {random.random()} * {random.random()}'
+        expr = self.parser.parse_to_expression(self.str_expr)
+        self.assertLessEqual(eval(self.str_expr.replace('^', '**')) - expr.eval(), 0.000000000001)
