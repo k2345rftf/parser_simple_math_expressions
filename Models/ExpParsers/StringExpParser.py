@@ -99,8 +99,11 @@ class StringExpParser(ParserInterface):
     def __parse_expression(self, operation=None) -> 'ExpressionInterface':
         if operation is None:
             operation = self.__parse_base
+            list_op = [KindOfToken.MUL, KindOfToken.POW, KindOfToken.DIV]
+        else:
+            list_op = [KindOfToken.ADD, KindOfToken.SUB]
         arg = operation()
-        while self.token.kind_of_token in self.operations:
+        while self.token.kind_of_token in list_op:
             kind = self.token.kind_of_token
             self.__next_token()
 
